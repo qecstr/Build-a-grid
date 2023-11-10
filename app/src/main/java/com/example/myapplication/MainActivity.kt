@@ -20,6 +20,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -55,18 +56,18 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GridApp(){
-
+    coursesGrid(topicList = DataSource.topics)
 }
 @Composable
 fun GripCard(topic: Topic, modifier: Modifier = Modifier) {
-    Card(modifier = modifier) {
+    Card{
         Row {
             Box {
                 Image(
                     painter = painterResource(id = topic.imageRes),
                     contentDescription = stringResource(id = topic.name),
                     modifier = Modifier
-                        .size(68.dp,68.dp)
+                        .size(width = 68.dp, height = 68.dp)
                         .aspectRatio(1f),
                     contentScale = ContentScale.Crop
                 )
@@ -78,10 +79,15 @@ fun GripCard(topic: Topic, modifier: Modifier = Modifier) {
                         style = MaterialTheme.typography.bodyMedium
                     )
                     Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_grain),
+                            contentDescription = null,
+                            modifier = Modifier.padding(start = 16.dp, end = 8.dp)
+                        )
                         Text(
                             text = topic.availableCourses.toString(),
                             style = MaterialTheme.typography.labelMedium,
-                            modifier = Modifier.padding(8.dp)
+                            modifier = Modifier.padding(start = 8.dp,end = 8.dp)
                         )
                     }
                 }
